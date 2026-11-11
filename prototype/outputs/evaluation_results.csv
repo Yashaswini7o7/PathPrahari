@@ -1,0 +1,5 @@
+model,hotspot_recall_top10pct,spearman_all_segments,spearman_sparse_segments,heldout_poisson_deviance,deviance_vs_counts_pct
+A. Raw crash counts,0.3077,0.0451,0.3554,1481.7223,0.0
+B. Crash rate (no smoothing),0.6731,0.4157,0.4261,1788.3755,20.6957
+C. Public-data prior (cold start),0.4615,0.7349,0.7188,787.2779,-46.8674
+D. PathPrahari (full),0.8077,0.8298,0.7774,504.0914,-65.9794

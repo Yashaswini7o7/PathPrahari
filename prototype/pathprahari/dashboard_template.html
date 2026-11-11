@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PathPrahari · Dispatch Console</title>
+<style>
+:root{
+  --bg:#0B1324; --panel:#0F1A2E; --card:#16223A; --card2:#1C2A45; --line:#2A3A5C;
+  --ink:#EEF2F8; --ink2:#A9B6CC; --ink3:#7F8DA8;
+  --saffron:#F5A524; --green:#1FB98A; --greenbg:#0F3B2C; --red:#E5484D; --redbg:#3A1518;
+  --blue:#3E7FE0; --amber:#C98A10;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font:14px/1.45 "Segoe UI",Inter,system-ui,-apple-system,"Nirmala UI","Noto Sans Devanagari",sans-serif}
+button,select,input{font:inherit;color:inherit}
+header{display:flex;align-items:center;gap:22px;padding:0 22px;height:60px;background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.logo{font-weight:800;font-size:20px;white-space:nowrap}.logo b{color:var(--saffron)}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav button{background:none;border:0;padding:8px 14px;border-radius:8px;color:var(--ink2);cursor:pointer;font-weight:600}
+nav button.on{background:var(--card2);color:var(--ink)}
+nav button:hover{color:var(--ink)}
+.note{margin-left:auto;font-size:12px;color:var(--ink3);border:1px solid var(--line);padding:4px 10px;border-radius:999px;white-space:nowrap}
+main{padding:18px 22px 40px}
+.tab{display:none}.tab.on{display:block}
+.grid3{display:grid;grid-template-columns:270px minmax(0,1fr) 380px;gap:16px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card+.card{margin-top:14px}
+h3{font-size:11.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;font-weight:700}
+label.f{display:block;font-size:12px;color:var(--ink3);margin:12px 0 5px}
+select,input[type=search]{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 10px}
+.hourbig{font-size:34px;font-weight:800;letter-spacing:.5px}
+input[type=range]{width:100%;accent-color:var(--saffron)}
+.seg{display:flex;background:var(--bg);border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.seg button{flex:1;border:0;background:none;padding:8px 0;cursor:pointer;color:var(--ink2);font-weight:600}
+.seg button.on{background:var(--saffron);color:#111}
+.kv{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.kv:last-child{border:0}.kv span:first-child{color:var(--ink3)}
+.mapwrap{position:relative}
+svg.map{width:100%;height:auto;display:block;background:var(--panel);border-radius:10px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin-top:10px;align-items:center}
+.sw{display:inline-block;width:24px;height:4px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.ramp{display:inline-block;width:110px;height:8px;border-radius:4px;background:linear-gradient(90deg,#22304C,#5B3A3F,#B5532F,#F08A24,#FFD166);vertical-align:middle;margin:0 6px}
+.tip{position:fixed;pointer-events:none;background:#07101F;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12.5px;max-width:300px;z-index:50;display:none;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.tip b{color:var(--saffron)}
+.insight{background:linear-gradient(90deg,#2A2110,#1A2233);border:1px solid #6B4E12;border-radius:12px;padding:12px 14px;margin-top:14px;font-size:14px}
+.insight b{color:var(--saffron)}
+.opt{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:12px 14px;cursor:pointer;margin-bottom:10px;transition:border-color .15s}
+.opt:hover{border-color:var(--ink3)}
+.opt.sel{border:2px solid var(--green);background:var(--greenbg)}
+.opt.sel.fast{border-color:var(--red);background:var(--redbg)}
+.opt .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.opt .nm{font-weight:700}
+.pill{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;white-space:nowrap}
+.p-high{background:#0E3D2D;color:#5EE3AE}.p-medium{background:#3B2D0B;color:#F2C35B}.p-low{background:var(--redbg);color:#FF8A8F}
+.big{font-size:24px;font-weight:800}
+.sub{font-size:12px;color:var(--ink2);margin-top:2px}
+.delta-good{color:#5EE3AE}.delta-bad{color:#FF8A8F}
+.why{background:var(--bg);border-radius:9px;padding:9px 11px;margin-bottom:8px;font-size:12.5px;cursor:default}
+.why b{color:var(--ink)}.why .r{color:var(--ink2)}
+.btn{display:block;width:100%;border:0;border-radius:11px;padding:12px;background:var(--green);color:#fff;font-weight:700;cursor:pointer;font-size:15px;margin-top:6px}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--card2);color:var(--ink);font-size:13px;padding:9px}
+.phone{background:#05080F;border:2px solid #2A3550;border-radius:30px;padding:10px;margin-top:4px}
+.phone .scr{background:#0E1626;border-radius:22px;overflow:hidden}
+.phone .hd{background:#13203A;padding:12px 14px;display:flex;gap:10px;align-items:center}
+.av{width:32px;height:32px;border-radius:50%;background:var(--saffron);color:#111;font-weight:800;display:flex;align-items:center;justify-content:center}
+.bub{margin:12px;background:#16243F;border-radius:14px;border-top-left-radius:4px;padding:11px 13px;font-size:13px;line-height:1.5}
+.bub .t{color:var(--saffron);font-weight:700;margin-bottom:6px}
+.bub p{margin-bottom:5px}
+.langs{display:flex;gap:6px;margin:0 12px 12px}
+.langs button{flex:1;border:1px solid var(--line);background:none;border-radius:8px;padding:5px;cursor:pointer;color:var(--ink2);font-size:12px}
+.langs button.on{background:var(--card2);color:var(--ink)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--greenbg);border:1px solid var(--green);padding:12px 18px;border-radius:12px;font-weight:600;display:none;z-index:60}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:var(--saffron);font-weight:700;padding:9px 10px;border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;position:sticky;top:0;background:var(--card)}
+td:first-child{white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #1E2B46;vertical-align:top}
+tr:hover td{background:#1A2742}
+tr.hl td{background:#2A2110}
+.tablewrap{max-height:620px;overflow:auto}
+.grid2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px}
+.gridc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:16px}
+.tiles .card{margin-top:0}
+.tile .n{font-size:28px;font-weight:800}.tile .l{font-size:12.5px;color:var(--ink2);margin-top:4px}
+svg.ch{width:100%;height:auto;display:block}
+.chtitle{font-weight:700;margin-bottom:8px}
+.muted{color:var(--ink2)}
+.about p{margin-bottom:10px;max-width:880px}
+.about h2{font-size:18px;margin:18px 0 8px}
+@media (max-width:1250px){.grid3{grid-template-columns:1fr}.grid2,.gridc{grid-template-columns:1fr}.tiles{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Path<b>Prahari</b></div>
+  <nav id="nav">
+    <button data-t="dispatch" class="on">Dispatch</button>
+    <button data-t="hotspots">Hotspots</button>
+    <button data-t="analytics">Analytics</button>
+    <button data-t="model">Model check</button>
+    <button data-t="log">Trip log</button>
+    <button data-t="about">About the data</button>
+  </nav>
+  <span class="note">Prototype · fleet data is simulated</span>
+</header>
+
+<main>
+<!-- ============================ DISPATCH ============================ -->
+<section class="tab on" id="t-dispatch">
+ <div class="grid3">
+  <div>
+   <div class="card">
+    <h3>Trip to assign</h3>
+    <label class="f">Route</label>
+    <select id="od"></select>
+    <label class="f">Departure time</label>
+    <div class="hourbig" id="hourTxt">01:00</div>
+    <input type="range" id="hour" min="0" max="23" value="1">
+    <label class="f">Weather forecast</label>
+    <div class="seg" id="wx">
+      <button data-w="clear" class="on">Clear</button><button data-w="fog">Fog</button><button data-w="rain">Rain</button>
+    </div>
+    <div style="margin-top:14px">
+      <div class="kv"><span>Trip</span><span id="tripId">T-0412</span></div>
+      <div class="kv"><span>Truck</span><span>#47 · 16 t</span></div>
+      <div class="kv"><span>Driver</span><span>2–7 yrs experience</span></div>
+      <div class="kv"><span>Options checked</span><span id="nCand">–</span></div>
+    </div>
+   </div>
+   <div class="card">
+    <h3>Map layers</h3>
+    <label style="display:flex;gap:8px;align-items:center;font-size:13px;margin-bottom:6px"><input type="checkbox" id="showHs" checked> Fleet hotspots</label>
+    <label style="display:flex;gap:8px;align-items:center;font-size:13px"><input type="checkbox" id="showFast" checked> Fastest route outline</label>
+    <p class="sub" style="margin-top:10px">Hover any road to see its risk, confidence and the reasons behind it.</p>
+   </div>
+  </div>
+
+  <div>
+   <div class="card">
+    <div class="mapwrap"><svg class="map" id="map"></svg></div>
+    <div class="legend">
+      <span>Road risk at this hour: low<span class="ramp"></span>high</span>
+      <span><span class="sw" style="background:repeating-linear-gradient(90deg,#E5484D 0 7px,transparent 7px 11px)"></span>Fastest</span>
+      <span><span class="sw" style="background:#1FB98A"></span>Selected option</span>
+      <span>◯ Fleet hotspot</span>
+    </div>
+    <div class="insight" id="insight"></div>
+   </div>
+   <div class="card">
+    <div class="chtitle">Risk by departure hour <span class="muted" style="font-weight:400">(click a point to change the departure time)</span></div>
+    <svg class="ch" id="depChart"></svg>
+   </div>
+  </div>
+
+  <div>
+   <div class="card">
+    <h3>Route options</h3>
+    <div id="opts"></div>
+    <p class="sub">Risk = expected incidents per 10,000 trips. Range shown is the 90% interval. Options more than 30% slower than the fastest are not offered.</p>
+   </div>
+   <div class="card">
+    <h3>Why this route is risky</h3>
+    <div id="why"></div>
+    <button class="btn" id="assign">Assign this route</button>
+    <button class="btn ghost" id="toLog" style="margin-top:8px">View trip log</button>
+   </div>
+   <div class="card">
+    <h3>Driver briefing</h3>
+    <div class="phone"><div class="scr">
+      <div class="hd"><div class="av">P</div><div><div style="font-weight:700">PathPrahari</div><div class="sub" id="phoneSub">Trip T-0412 · Truck #47</div></div></div>
+      <div class="bub" id="brief"></div>
+      <div class="langs"><button data-l="hi" class="on">हिंदी</button><button data-l="en">English</button></div>
+    </div></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ============================ HOTSPOTS ============================ -->
+<section class="tab" id="t-hotspots">
+ <div class="grid2">
+  <div class="card"><div class="chtitle">Fleet hotspots (ranked by risk per vehicle passing, not raw counts)</div><svg class="map" id="hsMap"></svg>
+   <p class="sub" style="margin-top:8px">Circle size shows the risk score. Click a row in the table to find it on the map.</p>
+   <div class="tiles" id="hsTiles" style="margin:16px 0 0;grid-template-columns:repeat(4,minmax(0,1fr))"></div>
+   <div class="chtitle" style="margin-top:16px">When hotspots peak</div><svg class="ch" id="hsHours"></svg></div>
+  <div class="card">
+   <input type="search" id="hsSearch" placeholder="Search by id, road type, event type or reason (e.g. 'junction', 'NH', 'curves')">
+   <div class="tablewrap" style="margin-top:10px"><table id="hsTable"></table></div>
+  </div>
+ </div>
+</section>
+
+<!-- ============================ ANALYTICS ============================ -->
+<section class="tab" id="t-analytics">
+ <div class="gridc">
+  <div class="card"><div class="chtitle">Harsh events per million vehicle-km, by month <span class="muted" style="font-weight:400">(winter fog lifts Dec–Jan)</span></div><svg class="ch" id="aTrendH"></svg></div>
+  <div class="card"><div class="chtitle">Incidents per million vehicle-km, by month</div><svg class="ch" id="aTrendI"></svg></div>
+  <div class="card"><div class="chtitle">Events by hour of day</div><svg class="ch" id="aHour"></svg></div>
+  <div class="card"><div class="chtitle">Incidents by zone (east → west)</div><svg class="ch" id="aZone"></svg></div>
+  <div class="card"><div class="chtitle">Harsh events by driver experience</div><svg class="ch" id="aCohort"></svg>
+    <p class="sub">The simulated fleet has more mid-experience drivers, and no built-in experience effect. With a real fleet's data this view shows which group needs coaching first.</p></div>
+  <div class="card"><div class="chtitle">Risk by road type</div><table id="aRoad"></table>
+    <div class="chtitle" style="margin-top:18px">Outcomes by option chosen (120 logged trips)</div><table id="aOut"></table></div>
+ </div>
+</section>
+
+<!-- ============================ MODEL ============================ -->
+<section class="tab" id="t-model">
+ <div class="tiles" id="mTiles"></div>
+ <div class="gridc">
+  <div class="card"><div class="chtitle">Held-out months 10–12: how well each method finds risky roads</div><svg class="ch" id="mEval"></svg>
+   <p class="sub">Trained on months 1–9 only. Because the fleet data is simulated, the true risk of every road is known, so accuracy can be measured exactly.</p></div>
+  <div class="card"><div class="chtitle">What the model learned about conditions (1 = daytime, clear)</div><svg class="ch" id="mCtx"></svg></div>
+  <div class="card"><div class="chtitle">Scalability on one laptop core</div><table id="mScal"></table></div>
+  <div class="card"><div class="chtitle">Comparison table</div><table id="mRes"></table></div>
+ </div>
+</section>
+
+<!-- ============================ LOG ============================ -->
+<section class="tab" id="t-log">
+ <div class="card">
+  <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
+   <div class="chtitle" style="margin:0">Trip log: every dispatch with its score, kept for post-trip comparison</div>
+   <button class="btn ghost" id="dl" style="width:auto;margin:0 0 0 auto;padding:8px 14px">Download CSV</button>
+  </div>
+  <div class="tablewrap"><table id="logTable"></table></div>
+ </div>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+<section class="tab about" id="t-about">
+ <div class="card">
+  <h2>What you are looking at</h2>
+  <p>This page is generated by <code>run_demo.py</code>. Every number on it comes from the model run on your machine: the route options for 3 trips × 24 departure hours × 3 weather conditions are computed in Python and stored inside this file, so it works offline.</p>
+  <h2>About the data</h2>
+  <p>Road features follow the schema of open datasets: OpenStreetMap for road geometry, curvature and junctions; NASA VIIRS night lights for street lighting; SRTM for gradients; MoRTH blackspot lists and Open-Meteo/IMD weather. In this prototype the road network itself is a generated corridor with that same schema, placed at Varanasi–Prayagraj belt coordinates, so everything runs without downloads.</p>
+  <p>There is no public Indian dataset of fleet harsh-braking events with GPS positions, so 12 months of fleet telematics are simulated (180 trucks). The simulation includes patterns reported in MoRTH data and common on Indian highways: higher risk at night, the 2–5 AM fatigue window, unlit stretches, winter fog, monsoon rain, busy junctions, plus hidden hotspots (median cuts, truck parking near dhabas) that road features alone cannot reveal. A real fleet's GPS export replaces the simulator without changing anything else.</p>
+  <h2>How to read the risk numbers</h2>
+  <p><b>Risk</b> is the expected number of incidents per 10,000 trips on that route at that departure time and weather. The range next to it is a 90% interval: when data on a road is thin, the range is wide and the confidence label drops to Medium or Low.</p>
+  <p><b>Hotspots</b> are ranked by risk per vehicle passing, not by raw counts, so a busy highway does not look dangerous just because it is busy.</p>
+ </div>
+</section>
+</main>
+<div class="tip" id="tip"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const D = /*__DATA__*/null;
+const $ = (s) => document.querySelector(s);
+const el = (tag, attrs = {}, parent) => { const e = document.createElementNS("http://www.w3.org/2000/svg", tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+const pad2 = (h) => String(h).padStart(2, "0");
+const f1 = (v) => (Math.round(v * 10) / 10).toFixed(1);
+const pct = (v) => (v > 0 ? "+" : "") + Math.round(v) + "%";
+const S = { od: 0, w: "clear", h: 1, sel: null, lang: "hi", session: [], tripNo: 412 };
+
+// ------------------------------------------------------------------ tabs
+document.querySelectorAll("#nav button").forEach((b) => b.onclick = () => showTab(b.dataset.t));
+function showTab(t) {
+  document.querySelectorAll("#nav button").forEach((x) => x.classList.toggle("on", x.dataset.t === t));
+  document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("on", x.id === "t-" + t));
+  if (t === "hotspots") drawHotspots();
+}
+
+// ------------------------------------------------------------------ projection
+const lons = D.nodes.map((n) => n[0]), lats = D.nodes.map((n) => n[1]);
+const minLon = Math.min(...lons), maxLon = Math.max(...lons), minLat = Math.min(...lats), maxLat = Math.max(...lats);
+const kx = Math.cos((minLat + maxLat) / 2 * Math.PI / 180);
+const MW = 1000, PADM = 30;
+const sc = (MW - 2 * PADM) / ((maxLon - minLon) * kx);
+const MH = (maxLat - minLat) * sc + 2 * PADM;
+const P = (i) => [PADM + (D.nodes[i][0] - minLon) * kx * sc, PADM + (maxLat - D.nodes[i][1]) * sc];
+const PL = (lon, lat) => [PADM + (lon - minLon) * kx * sc, PADM + (maxLat - lat) * sc];
+
+// colour ramp
+const RAMP = [[0x22, 0x30, 0x4C], [0x5B, 0x3A, 0x3F], [0xB5, 0x53, 0x2F], [0xF0, 0x8A, 0x24], [0xFF, 0xD1, 0x66]];
+function ramp(t) { t = Math.max(0, Math.min(1, t)) * (RAMP.length - 1); const i = Math.min(RAMP.length - 2, Math.floor(t)), f = t - i;
+  const c = RAMP[i].map((v, k) => Math.round(v + (RAMP[i + 1][k] - v) * f)); return `rgb(${c})`; }
+const segIdx = {}; D.segs.forEach((s, i) => segIdx[s.id] = i);
+const medRate = [...D.segs.map((s) => s.rate)].sort((a, b) => a - b)[Math.floor(D.segs.length / 2)];
+function segRisk(i, w, h) { return D.segs[i].rate * D.ctx[w][i][h]; }
+
+// ------------------------------------------------------------------ dispatch map
+const map = $("#map");
+map.setAttribute("viewBox", `0 0 ${MW} ${MH}`);
+const gSeg = el("g", {}, map), gFast = el("g", {}, map), gSel = el("g", {}, map), gHot = el("g", {}, map), gLab = el("g", {}, map), gFocus = el("g", {}, map);
+const segLines = D.segs.map((s, i) => {
+  const [x1, y1] = P(s.a), [x2, y2] = P(s.b);
+  const l = el("line", { x1, y1, x2, y2, "stroke-linecap": "round" }, gSeg);
+  l.addEventListener("mousemove", (ev) => showSegTip(ev, i));
+  l.addEventListener("mouseleave", hideTip);
+  return l;
+});
+function colourSegments() {
+  const vals = D.segs.map((_, i) => Math.log(segRisk(i, S.w, S.h)));
+  const sorted = [...vals].sort((a, b) => a - b);
+  const lo = sorted[Math.floor(vals.length * 0.05)], hi = sorted[Math.floor(vals.length * 0.97)];
+  segLines.forEach((l, i) => { const t = (vals[i] - lo) / (hi - lo); l.setAttribute("stroke", ramp(t)); l.setAttribute("stroke-width", t > 0.72 ? 4.5 : t > 0.45 ? 3 : 2); });
+}
+function routePath(nodes) { return nodes.map((n, k) => { const [x, y] = P(n); return (k ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1); }).join(" "); }
+function drawRoutes() {
+  gFast.innerHTML = ""; gSel.innerHTML = ""; gLab.innerHTML = "";
+  const c = combo(), f = c.opts.Fastest, sel = c.opts[S.sel];
+  if ($("#showFast").checked || S.sel === "Fastest") {
+    el("path", { d: routePath(f.n), fill: "none", stroke: "#0B1324", "stroke-width": 9, "stroke-linecap": "round", "stroke-linejoin": "round" }, gFast);
+    el("path", { d: routePath(f.n), fill: "none", stroke: "#E5484D", "stroke-width": 4, "stroke-dasharray": S.sel === "Fastest" ? "0" : "10 6", "stroke-linecap": "round", "stroke-linejoin": "round" }, gFast);
+  }
+  if (S.sel !== "Fastest") {
+    el("path", { d: routePath(sel.n), fill: "none", stroke: "#0B1324", "stroke-width": 10, "stroke-linecap": "round", "stroke-linejoin": "round" }, gSel);
+    el("path", { d: routePath(sel.n), fill: "none", stroke: "#1FB98A", "stroke-width": 5, "stroke-linecap": "round", "stroke-linejoin": "round" }, gSel);
+  }
+  const od = D.ods[S.od];
+  [[od.a, od.name.split(" → ")[0]], [od.b, od.name.split(" → ")[1]]].forEach(([n, name], k) => {
+    const [x, y] = P(n);
+    el("circle", { cx: x, cy: y, r: 9, fill: "#EEF2F8", stroke: "#0B1324", "stroke-width": 3 }, gLab);
+    const t = el("text", { x, y: y + 28, "text-anchor": "middle", fill: "#EEF2F8", "font-size": 17, "font-weight": 700 }, gLab); t.textContent = name;
+  });
+}
+function drawHotspotRings(g, list, scale = 1) {
+  g.innerHTML = "";
+  list.forEach((h, k) => {
+    const [x, y] = PL(h.lon, h.lat);
+    el("circle", { cx: x, cy: y, r: (7 + h.risk_score * 0.16) * scale, fill: "none", stroke: "#EEF2F8", "stroke-width": 1.8, opacity: 0.9 }, g);
+    if (k < 5) { const t = el("text", { x: x + 12, y: y - 10, fill: "#EEF2F8", "font-size": 13, "font-weight": 700 }, g); t.textContent = h.hotspot_id; }
+  });
+}
+function combo() { return D.combos[`${S.od}|${S.w}|${S.h}`]; }
+
+// ------------------------------------------------------------------ tooltip
+const tip = $("#tip");
+function moveTip(ev) { tip.style.left = Math.min(ev.clientX + 16, innerWidth - 320) + "px"; tip.style.top = (ev.clientY + 14) + "px"; tip.style.display = "block"; }
+function hideTip() { tip.style.display = "none"; }
+function ctxReason(i) {
+  const m = D.ctx[S.w][i][S.h];
+  if (m <= 1.3) return null;
+  const lab = S.w === "fog" ? "Fog + night + darkness" : S.w === "rain" ? "Rain on curves" : "Night / fatigue window";
+  return `${lab} (${m.toFixed(1)}x risk at ${pad2(S.h)}:00)`;
+}
+function showSegTip(ev, i) {
+  const s = D.segs[i], r = segRisk(i, S.w, S.h);
+  const reasons = [...s.why]; const cr = ctxReason(i); if (cr) reasons.unshift(cr);
+  tip.innerHTML = `<b>Road segment ${s.id}</b> · ${s.cls} · ${s.len} km<br>
+    Risk now: <b>${(r).toFixed(2)}</b> per M vehicle-km (×${D.ctx[S.w][i][S.h].toFixed(2)} for ${pad2(S.h)}:00, ${S.w})<br>
+    Daytime base: ${s.rate.toFixed(2)} [${s.lo.toFixed(2)}–${s.hi.toFixed(2)}] · confidence <b>${s.conf}</b><br>
+    Fleet evidence: ${s.inc} incidents, ${s.ev} harsh events / near-misses<br>
+    ${reasons.length ? "<span style='color:#A9B6CC'>" + reasons.slice(0, 3).join("<br>") + "</span>" : ""}`;
+  moveTip(ev);
+}
+
+// ------------------------------------------------------------------ options + reasons + brief
+function sameRoute(a, b) { return a.n.length === b.n.length && a.n.every((v, k) => v === b.n[k]); }
+function renderOptions() {
+  const c = combo(), o = c.opts, F = o.Fastest;
+  $("#nCand").textContent = c.nCand + " routes";
+  const groups = [];
+  ["Fastest", "Balanced", "Safest"].forEach((k) => {
+    const g = groups.find((x) => sameRoute(o[x.keys[0]], o[k]));
+    if (g) g.keys.push(k); else groups.push({ keys: [k] });
+  });
+  if (!S.sel || !o[S.sel]) S.sel = groups.length > 1 ? groups[1].keys[0] : "Fastest";
+  // keep selection inside the right group
+  const box = $("#opts"); box.innerHTML = "";
+  groups.forEach((g) => {
+    const r = o[g.keys[0]], isF = g.keys.includes("Fastest");
+    const sel = g.keys.includes(S.sel);
+    const d = 100 * (r.r / F.r - 1), dm = r.t - F.t;
+    const div = document.createElement("div");
+    div.className = "opt" + (sel ? " sel" : "") + (isF ? " fast" : "");
+    div.innerHTML = `<div class="row"><span class="nm">${g.keys.join(" · ")}</span><span class="pill p-${r.c.toLowerCase()}">${r.c} confidence</span></div>
+      <div class="row" style="margin-top:6px"><span class="big">${Math.round(r.t)} min</span><span class="big ${isF ? "" : (d < 0 ? "delta-good" : "delta-bad")}">${f1(r.r)}</span></div>
+      <div class="sub">${r.km} km · range ${f1(r.lo)}–${f1(r.hi)}${isF ? "" : ` · <b class="${d < 0 ? "delta-good" : "delta-bad"}">${pct(d)} risk</b> for +${Math.round(dm)} min`}</div>`;
+    div.onclick = () => { S.sel = g.keys[0]; update(false); };
+    box.appendChild(div);
+  });
+}
+function renderWhy() {
+  const r = combo().opts[S.sel]; const box = $("#why"); box.innerHTML = "";
+  r.top.forEach((t, k) => {
+    const d = document.createElement("div"); d.className = "why";
+    d.innerHTML = `<b>${k + 1}. km ${Math.round(t.km[0])}–${Math.round(t.km[1])}</b> · around ${t.clk}<br><span class="r">${t.why.join(" · ")}</span>`;
+    d.onmouseenter = () => focusSeg(t.s); d.onmouseleave = () => gFocus.innerHTML = "";
+    box.appendChild(d);
+  });
+}
+function focusSeg(id) {
+  gFocus.innerHTML = ""; const s = D.segs[segIdx[id]]; const [x1, y1] = P(s.a), [x2, y2] = P(s.b);
+  el("line", { x1, y1, x2, y2, stroke: "#F5A524", "stroke-width": 14, opacity: .45, "stroke-linecap": "round" }, gFocus);
+}
+function hindi(reason) { for (const k in D.hindi) if (reason.startsWith(k)) return D.hindi[k]; return reason; }
+function bestHour() {
+  let best = S.h, br = Infinity;
+  for (let h = 0; h < 24; h++) { const r = D.combos[`${S.od}|${S.w}|${h}`].opts[S.sel].r; if (r < br) { br = r; best = h; } }
+  return { h: best, r: br };
+}
+function renderBrief() {
+  const r = combo().opts[S.sel], od = D.ods[S.od], bh = bestHour();
+  const gain = 100 * (1 - bh.r / r.r);
+  const [from, to] = od.name.split(" → ");
+  let html;
+  if (S.lang === "hi") {
+    html = `<div class="t">यात्रा से पहले सूचना · ${from} → ${to}</div>
+      <p>प्रस्थान ${pad2(S.h)}:00 · लगभग ${Math.round(r.t)} मिनट · ${r.km} किमी</p><p><b>सावधान रहें:</b></p>` +
+      r.top.map((t, k) => `<p>${k + 1}. किमी ${Math.round(t.km[0])}–${Math.round(t.km[1])} (~${t.clk} बजे): ${[...new Set(t.why.map(hindi))].join(", ")}। रफ़्तार कम रखें।</p>`).join("") +
+      (gain > 15 ? `<p>सुझाव: ${pad2(bh.h)}:00 बजे निकलने पर जोखिम लगभग ${Math.round(gain)}% कम होगा।</p>` : "");
+  } else {
+    html = `<div class="t">Pre-trip briefing · ${from} → ${to}</div>
+      <p>Departure ${pad2(S.h)}:00 · about ${Math.round(r.t)} min · ${r.km} km</p><p><b>Watch out for:</b></p>` +
+      r.top.map((t, k) => `<p>${k + 1}. km ${Math.round(t.km[0])}–${Math.round(t.km[1])} (~${t.clk}): ${t.why.join("; ")}. Slow down.</p>`).join("") +
+      (gain > 15 ? `<p>Tip: leaving at ${pad2(bh.h)}:00 would cut risk by about ${Math.round(gain)}%.</p>` : "");
+  }
+  $("#brief").innerHTML = html;
+  $("#phoneSub").textContent = `Trip T-${pad2(S.tripNo).padStart(4, "0")} · Truck #47`;
+}
+document.querySelectorAll(".langs button").forEach((b) => b.onclick = () => { S.lang = b.dataset.l; document.querySelectorAll(".langs button").forEach((x) => x.classList.toggle("on", x === b)); renderBrief(); });
+function renderInsight() {
+  const r = combo().opts[S.sel], bh = bestHour(); const gain = 100 * (1 - bh.r / r.r);
+  const nightDark = r.top.some((t) => /Night|Fog|dark/i.test(t.why.join(" ")));
+  $("#insight").innerHTML = gain > 15
+    ? `⏰ <b>Departure time:</b> on this route, leaving at <b>${pad2(bh.h)}:00</b> instead of ${pad2(S.h)}:00 lowers expected risk by <b>${Math.round(gain)}%</b>${nightDark ? " (it avoids crossing unlit stretches in the night and fatigue hours)" : ""}.`
+    : `✓ <b>Departure time:</b> ${pad2(S.h)}:00 is already within ${Math.max(0, Math.round(gain))}% of the safest hour for this route.`;
+}
+
+// ------------------------------------------------------------------ charts (tiny SVG helpers)
+function axes(svg, W, H, m, yMax, yTicks, fmt = (v) => v) {
+  for (let k = 0; k <= yTicks; k++) {
+    const v = yMax * k / yTicks, y = H - m.b - (H - m.t - m.b) * k / yTicks;
+    el("line", { x1: m.l, x2: W - m.r, y1: y, y2: y, stroke: "#2A3A5C", "stroke-width": 1 }, svg);
+    const t = el("text", { x: m.l - 8, y: y + 4, "text-anchor": "end", fill: "#A9B6CC", "font-size": 12 }, svg); t.textContent = fmt(v);
+  }
+}
+function niceMax(v) { const p = Math.pow(10, Math.floor(Math.log10(v || 1))); for (const s of [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10]) if (s * p >= v) return s * p; return 10 * p; }
+function lineChart(svg, { labels, series, marker = null, onPick = null, fmt = (v) => v.toFixed(1), H = 260, every = 1 }) {
+  svg.innerHTML = ""; const W = 760, m = { l: 48, r: 18, t: 14, b: 42 };
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const yMax = niceMax(Math.max(...series.flatMap((s) => s.vals)) * 1.08);
+  axes(svg, W, H, m, yMax, 4, fmt);
+  const X = (i) => m.l + (W - m.l - m.r) * i / (labels.length - 1), Y = (v) => H - m.b - (H - m.t - m.b) * v / yMax;
+  labels.forEach((l, i) => { if (i % every === 0) { const t = el("text", { x: X(i), y: H - m.b + 18, "text-anchor": "middle", fill: "#A9B6CC", "font-size": 12 }, svg); t.textContent = l; } });
+  if (marker !== null) el("line", { x1: X(marker), x2: X(marker), y1: m.t, y2: H - m.b, stroke: "#F5A524", "stroke-width": 2, "stroke-dasharray": "4 4" }, svg);
+  series.forEach((s) => {
+    el("path", { d: s.vals.map((v, i) => (i ? "L" : "M") + X(i) + " " + Y(v)).join(" "), fill: "none", stroke: s.color, "stroke-width": 2.5, "stroke-dasharray": s.dash || "0" }, svg);
+    s.vals.forEach((v, i) => { const c = el("circle", { cx: X(i), cy: Y(v), r: 4.5, fill: s.color, stroke: "#16223A", "stroke-width": 2, style: onPick ? "cursor:pointer" : "" }, svg);
+      c.addEventListener("mousemove", (ev) => { tip.innerHTML = `<b>${s.name}</b><br>${labels[i]}: ${fmt(v)}`; moveTip(ev); }); c.addEventListener("mouseleave", hideTip);
+      if (onPick) c.onclick = () => onPick(i); });
+  });
+  let lx = m.l; series.forEach((s) => { el("line", { x1: lx, x2: lx + 22, y1: H - 8, y2: H - 8, stroke: s.color, "stroke-width": 3, "stroke-dasharray": s.dash || "0" }, svg);
+    const t = el("text", { x: lx + 28, y: H - 4, fill: "#EEF2F8", "font-size": 12.5 }, svg); t.textContent = s.name; lx += 34 + s.name.length * 7.2; });
+}
+function barChart(svg, { labels, series, fmt = (v) => v, H = 260, yMax = null, horizontal = false, refLine = null }) {
+  svg.innerHTML = ""; const W = 760;
+  if (horizontal) {
+    const m = { l: 190, r: 70, t: 10, b: 10 }, rowH = 34; H = m.t + m.b + rowH * labels.length; svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    const mx = yMax || niceMax(Math.max(...series[0].vals) * 1.1); const X = (v) => m.l + (W - m.l - m.r) * v / mx;
+    if (refLine !== null) el("line", { x1: X(refLine), x2: X(refLine), y1: 0, y2: H, stroke: "#A9B6CC", "stroke-width": 1 }, svg);
+    labels.forEach((l, i) => { const y = m.t + i * rowH;
+      el("rect", { x: m.l, y: y + 6, width: Math.max(2, X(series[0].vals[i]) - m.l), height: rowH - 12, rx: 4, fill: series[0].color }, svg);
+      const t = el("text", { x: m.l - 10, y: y + rowH / 2 + 4, "text-anchor": "end", fill: "#EEF2F8", "font-size": 13 }, svg); t.textContent = l;
+      const v = el("text", { x: X(series[0].vals[i]) + 8, y: y + rowH / 2 + 4, fill: "#EEF2F8", "font-size": 13 }, svg); v.textContent = fmt(series[0].vals[i]); });
+    return;
+  }
+  const m = { l: 48, r: 12, t: 16, b: series.length > 1 ? 58 : 40 }; svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const mx = yMax || niceMax(Math.max(...series.flatMap((s) => s.vals)) * 1.12);
+  const nt = mx <= 1.5 || mx % 4 === 0 ? 4 : 5;
+  axes(svg, W, H, m, mx, nt, (v) => (mx <= 1.5 ? v.toFixed(1) : Math.round(v)));
+  const gw = (W - m.l - m.r) / labels.length, bw = Math.min(46, gw * 0.75 / series.length);
+  labels.forEach((l, i) => {
+    const x0 = m.l + gw * i + (gw - bw * series.length - 2 * (series.length - 1)) / 2;
+    series.forEach((s, k) => { const v = s.vals[i], h = (H - m.t - m.b) * v / mx, x = x0 + k * (bw + 2);
+      const r = el("rect", { x, y: H - m.b - h, width: bw, height: h, rx: 3, fill: s.color }, svg);
+      r.addEventListener("mousemove", (ev) => { tip.innerHTML = `<b>${l}</b><br>${s.name}: ${fmt(v)}`; moveTip(ev); }); r.addEventListener("mouseleave", hideTip);
+      if (series.length > 1 || labels.length <= 8) { const t = el("text", { x: x + bw / 2, y: H - m.b - h - 5, "text-anchor": "middle", fill: "#EEF2F8", "font-size": 11.5 }, svg); t.textContent = fmt(v); } });
+    const t = el("text", { x: m.l + gw * i + gw / 2, y: H - m.b + 17, "text-anchor": "middle", fill: "#A9B6CC", "font-size": 12 }, svg); t.textContent = l;
+  });
+  if (series.length > 1) { let lx = m.l; series.forEach((s) => { el("rect", { x: lx, y: H - 16, width: 14, height: 10, rx: 2, fill: s.color }, svg);
+    const t = el("text", { x: lx + 20, y: H - 7, fill: "#EEF2F8", "font-size": 12.5 }, svg); t.textContent = s.name; lx += 30 + s.name.length * 7; }); }
+}
+function table(tbl, cols, rows, opts = {}) {
+  tbl.innerHTML = "<thead><tr>" + cols.map((c) => `<th data-k="${c.k}">${c.h}</th>`).join("") + "</tr></thead><tbody>" +
+    rows.map((r) => `<tr data-id="${opts.idKey ? r[opts.idKey] : ""}">` + cols.map((c) => `<td>${c.f ? c.f(r[c.k], r) : r[c.k]}</td>`).join("") + "</tr>").join("") + "</tbody>";
+}
+
+// ------------------------------------------------------------------ dispatch chart
+function renderDepChart() {
+  const fast = [], sel = [];
+  for (let h = 0; h < 24; h++) { const c = D.combos[`${S.od}|${S.w}|${h}`]; fast.push(c.opts.Fastest.r); sel.push(c.opts[S.sel].r); }
+  const series = [{ name: "Fastest route", color: "#E5484D", vals: fast, dash: "7 5" }];
+  if (S.sel !== "Fastest") series.push({ name: `${S.sel} route`, color: "#1FB98A", vals: sel });
+  lineChart($("#depChart"), { labels: [...Array(24).keys()].map((h) => pad2(h) + ":00"), series, marker: S.h, every: 3,
+    onPick: (i) => { $("#hour").value = i; S.h = i; update(true); } });
+}
+
+// ------------------------------------------------------------------ update loop
+function update(resetSel) {
+  $("#hourTxt").textContent = pad2(S.h) + ":00";
+  if (resetSel) S.sel = null;
+  renderOptions(); colourSegments(); drawRoutes(); renderWhy(); renderBrief(); renderInsight(); renderDepChart();
+  drawHotspotRings(gHot, $("#showHs").checked ? D.hotspots.slice(0, 14) : []);
+}
+D.ods.forEach((o, i) => { const op = document.createElement("option"); op.value = i; op.textContent = o.name; $("#od").appendChild(op); });
+$("#od").onchange = (e) => { S.od = +e.target.value; update(true); };
+$("#hour").oninput = (e) => { S.h = +e.target.value; update(true); };
+document.querySelectorAll("#wx button").forEach((b) => b.onclick = () => { S.w = b.dataset.w; document.querySelectorAll("#wx button").forEach((x) => x.classList.toggle("on", x === b)); update(true); });
+$("#showHs").onchange = () => update(false); $("#showFast").onchange = () => update(false);
+$("#toLog").onclick = () => showTab("log");
+
+// ------------------------------------------------------------------ assign + log
+const LOGCOLS = ["trip_id", "departure_hour", "weather", "chosen_option", "travel_min", "risk_per_10k", "risk_lo", "risk_hi", "confidence", "fastest_risk_per_10k", "post_trip_harsh_events"];
+$("#assign").onclick = () => {
+  const c = combo(), r = c.opts[S.sel];
+  const row = { trip_id: `T-${String(S.tripNo).padStart(4, "0")} (new)`, departure_hour: S.h, weather: S.w, chosen_option: S.sel, travel_min: r.t, risk_per_10k: r.r,
+    risk_lo: r.lo, risk_hi: r.hi, confidence: r.c, fastest_risk_per_10k: c.opts.Fastest.r, post_trip_harsh_events: "pending" };
+  S.session.unshift(row); S.tripNo += 1; $("#tripId").textContent = `T-${String(S.tripNo).padStart(4, "0")}`;
+  renderLog(); renderBrief();
+  const t = $("#toast"); t.textContent = `${row.trip_id.replace(" (new)", "")} assigned to ${S.sel.toLowerCase()} route · briefing sent to driver · logged`; t.style.display = "block";
+  setTimeout(() => t.style.display = "none", 2600);
+};
+function renderLog() {
+  const rows = [...S.session, ...D.log];
+  table($("#logTable"), LOGCOLS.map((k) => ({ k, h: k.replace(/_/g, " "), f: (v, r) => (k === "departure_hour" ? pad2(v) + ":00" : typeof v === "number" ? (Number.isInteger(v) ? v : v.toFixed(2)) : v) })), rows);
+}
+$("#dl").onclick = () => {
+  const rows = [...S.session, ...D.log];
+  const csv = [LOGCOLS.join(",")].concat(rows.map((r) => LOGCOLS.map((k) => r[k]).join(","))).join("\n");
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" })); a.download = "pathprahari_trip_log.csv"; a.click();
+};
+
+// ------------------------------------------------------------------ hotspots tab
+const hsMap = $("#hsMap"); hsMap.setAttribute("viewBox", `0 0 ${MW} ${MH}`);
+const gHsBase = el("g", {}, hsMap), gHsRings = el("g", {}, hsMap), gHsSel = el("g", {}, hsMap);
+D.segs.forEach((s) => { const [x1, y1] = P(s.a), [x2, y2] = P(s.b); el("line", { x1, y1, x2, y2, stroke: s.cls === "NH" ? "#3A4E78" : "#25324F", "stroke-width": s.cls === "NH" ? 3 : 1.5 }, gHsBase); });
+let hsDrawn = false;
+function drawHotspots() {
+  if (hsDrawn) return; hsDrawn = true;
+  D.hotspots.forEach((h) => { const [x, y] = PL(h.lon, h.lat);
+    const c = el("circle", { cx: x, cy: y, r: 4 + h.risk_score * 0.18, fill: "#F08A24", "fill-opacity": .35, stroke: "#FFD166", "stroke-width": 1.4 }, gHsRings);
+    c.addEventListener("mousemove", (ev) => { tip.innerHTML = `<b>${h.hotspot_id}</b> · ${h.road_class} · score ${h.risk_score}<br>${h.events} events, ${h.incidents} incidents · peak ${pad2(h.peak_hour)}:00<br><span style="color:#A9B6CC">${h.reasons.replace(/ \| /g, "<br>")}</span>`; moveTip(ev); });
+    c.addEventListener("mouseleave", hideTip); });
+  renderHsTable(D.hotspots);
+  const H = D.hotspots, by = (c) => H.filter((h) => h.road_class === c).length;
+  const night = H.filter((h) => h.peak_hour >= 22 || h.peak_hour <= 5).length;
+  $("#hsTiles").innerHTML = [[H.length, "hotspots found"], [by("NH"), "on national highways"], [by("SH") + by("MDR"), "on state & district roads"], [Math.round(100 * night / H.length) + "%", "peak between 22:00 and 05:00"]]
+    .map((t) => `<div class="card tile" style="padding:12px"><div class="n" style="font-size:24px">${t[0]}</div><div class="l">${t[1]}</div></div>`).join("");
+  const bands = ["00–03", "04–07", "08–11", "12–15", "16–19", "20–23"], cnt = [0, 0, 0, 0, 0, 0];
+  H.forEach((h) => cnt[Math.floor(h.peak_hour / 4)]++);
+  barChart($("#hsHours"), { labels: bands, series: [{ name: "Hotspots", color: "#F08A24", vals: cnt }], H: 200 });
+}
+const HSCOLS = [{ k: "hotspot_id", h: "Id" }, { k: "risk_score", h: "Score" }, { k: "road_class", h: "Road" }, { k: "events", h: "Events" }, { k: "incidents", h: "Incidents" },
+  { k: "peak_hour", h: "Peak", f: (v) => pad2(v) + ":00" }, { k: "top_event", h: "Main event", f: (v) => v.replace("_", " ") }, { k: "reasons", h: "Why", f: (v) => `<span class="muted">${v.replace(/ \| /g, "<br>")}</span>` }];
+let hsSort = { k: "risk_score", d: -1 };
+function renderHsTable(rows) {
+  rows = [...rows].sort((a, b) => (a[hsSort.k] > b[hsSort.k] ? 1 : -1) * hsSort.d);
+  table($("#hsTable"), HSCOLS, rows, { idKey: "hotspot_id" });
+  document.querySelectorAll("#hsTable th").forEach((th) => th.onclick = () => { hsSort = { k: th.dataset.k, d: hsSort.k === th.dataset.k ? -hsSort.d : -1 }; filterHs(); });
+  document.querySelectorAll("#hsTable tbody tr").forEach((tr) => tr.onclick = () => {
+    document.querySelectorAll("#hsTable tr").forEach((x) => x.classList.remove("hl")); tr.classList.add("hl");
+    const h = D.hotspots.find((x) => x.hotspot_id === tr.dataset.id); gHsSel.innerHTML = ""; const [x, y] = PL(h.lon, h.lat);
+    el("circle", { cx: x, cy: y, r: 26, fill: "none", stroke: "#F5A524", "stroke-width": 4 }, gHsSel); });
+}
+function filterHs() { const q = $("#hsSearch").value.toLowerCase().trim();
+  renderHsTable(D.hotspots.filter((h) => !q || [h.hotspot_id, h.road_class, h.top_event, h.reasons].join(" ").toLowerCase().includes(q))); }
+$("#hsSearch").oninput = filterHs;
+
+// ------------------------------------------------------------------ analytics
+(function analytics() {
+  const R = D.reports;
+  lineChart($("#aTrendH"), { labels: R.trend.month, series: [{ name: "Harsh events per M vehicle-km", color: "#F5A524", vals: R.trend.harsh }], fmt: (v) => v.toFixed(0), H: 230 });
+  lineChart($("#aTrendI"), { labels: R.trend.month, series: [{ name: "Incidents per M vehicle-km", color: "#E5484D", vals: R.trend.inc }], fmt: (v) => v.toFixed(2), H: 230 });
+  barChart($("#aHour"), { labels: R.hour.hour.map((h) => (h % 3 === 0 ? pad2(h) : "")), series: [{ name: "Events", color: "#3E7FE0", vals: R.hour.events }], fmt: (v) => v.toLocaleString("en-IN"), H: 230 });
+  barChart($("#aZone"), { labels: R.zone.zone, series: [{ name: "Incidents", color: "#E5484D", vals: R.zone.inc }], fmt: (v) => v, H: 230 });
+  barChart($("#aCohort"), { labels: R.cohort.cohort, series: [{ name: "Harsh events", color: "#C98A10", vals: R.cohort.harsh }], fmt: (v) => v.toLocaleString("en-IN"), H: 230 });
+  table($("#aRoad"), [{ k: "road_class", h: "Road type" }, { k: "segments", h: "Segments" }, { k: "mean_risk", h: "Avg risk (per M vkm)", f: (v) => v.toFixed(2) }, { k: "low_conf_share", h: "Low confidence", f: (v) => Math.round(v * 100) + "%" }], R.road);
+  table($("#aOut"), [{ k: "chosen_option", h: "Option" }, { k: "trips", h: "Trips" }, { k: "mean_min", h: "Avg minutes", f: (v) => v.toFixed(0) }, { k: "mean_risk", h: "Avg risk", f: (v) => v.toFixed(2) }, { k: "harsh_events", h: "Harsh events / trip", f: (v) => v.toFixed(1) }], R.outcomes);
+})();
+
+// ------------------------------------------------------------------ model check
+(function model() {
+  const E = D.eval, r = E.res, x = E.extra, full = r[3], base = r[0];
+  const tiles = [
+    [`${full.hotspot_recall_top10pct.toFixed(2)}`, `share of the truly riskiest 10% of roads found (raw crash counts: ${base.hotspot_recall_top10pct.toFixed(2)})`, "#3E7FE0"],
+    [`${Math.round(-full.deviance_vs_counts_pct)}%`, "lower prediction error on held-out months than ranking by crash counts", "#1FB98A"],
+    [`${Math.round(x.ci90_coverage * 100)}%`, "of roads whose true risk falls inside the 90% interval", "#F5A524"],
+    [`${x.route_spearman.toFixed(2)}`, `rank agreement with true route risk over ${x.n_routes} random routes`, "#C98A10"]];
+  $("#mTiles").innerHTML = tiles.map((t) => `<div class="card tile"><div class="n" style="color:${t[2]}">${t[0]}</div><div class="l">${t[1]}</div></div>`).join("");
+  const names = ["Raw crash counts", "Crash rate", "Open-data prior only", "PathPrahari"];
+  barChart($("#mEval"), { labels: names, series: [{ name: "Hotspot recall (top 10%)", color: "#3E7FE0", vals: r.map((z) => z.hotspot_recall_top10pct) }, { name: "Rank correlation with true risk", color: "#1FB98A", vals: r.map((z) => z.spearman_all_segments) }], fmt: (v) => v.toFixed(2), yMax: 1, H: 300 });
+  const lab = { night: "Night (22–05h)", night_x_dark: "…on an unlit road", fatigue_2to5: "Fatigue window (02–05h)", fog: "Fog", fog_x_night_x_dark: "Fog + night + unlit", rain: "Rain", rain_x_curve: "Rain on curves" };
+  const ent = Object.entries(E.ctx).sort((a, b) => b[1] - a[1]);
+  barChart($("#mCtx"), { labels: ent.map((e) => lab[e[0]]), series: [{ name: "x", color: "#F5A524", vals: ent.map((e) => e[1]) }], fmt: (v) => "×" + v.toFixed(2), horizontal: true, refLine: 1 });
+  if (E.scal) {
+    const ev = E.scal.filter((z) => z.kind === "events"), nw = E.scal.filter((z) => z.kind === "network");
+    table($("#mScal"), [{ k: "what", h: "Workload" }, { k: "size", h: "Size" }, { k: "time", h: "Time" }],
+      ev.map((z) => ({ what: "Hotspots + model fit", size: z.n.toLocaleString("en-IN") + " events", time: (z.hotspot_s + z.fit_s).toFixed(1) + " s" }))
+      .concat(nw.map((z) => ({ what: "Route query (all options)", size: z.n.toLocaleString("en-IN") + " road segments", time: Math.round(z.route_query_s * 1000) + " ms" }))));
+  } else $("#mScal").innerHTML = "<tr><td class='muted'>Run without --quick to include the scalability benchmark.</td></tr>";
+  table($("#mRes"), [{ k: "model", h: "Method", f: (v) => v.replace(/^[A-D]\. /, "") }, { k: "hotspot_recall_top10pct", h: "Recall", f: (v) => v.toFixed(2) },
+    { k: "spearman_all_segments", h: "Rank corr.", f: (v) => v.toFixed(2) }, { k: "spearman_sparse_segments", h: "Rank corr. (sparse roads)", f: (v) => v.toFixed(2) },
+    { k: "deviance_vs_counts_pct", h: "Error vs counts", f: (v) => (v > 0 ? "+" : "") + Math.round(v) + "%" }], r);
+})();
+
+renderLog();
+update(true);
+</script>
+</body>
+</html>

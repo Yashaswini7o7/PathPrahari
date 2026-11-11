@@ -1,0 +1,72 @@
+lon,lat,risk_score,raw_weighted,events,incidents,near_misses,top_event,peak_hour,main_segment,extent_m,hotspot_id,rank,reasons,road_class
+82.77953,25.27633,100.0,160.98147,290,8,41,harsh_brake,0,410,600,HS-001,1,"Fleet harsh-event cluster (432 events, 3.2x expected) | Night / fatigue window (3.0x risk at 00:00) | Busy multi-arm junction",MDR
+82.03405,25.28669,85.3,82.85162,195,1,22,harsh_brake,3,73,600,HS-002,2,"Night / fatigue window (3.7x risk at 03:00) | Fleet harsh-event cluster (304 events, 2.8x expected) | Busy multi-arm junction",MDR
+82.38121,25.27686,65.7,74.38122,150,3,23,harsh_brake,4,240,800,HS-003,3,"Night / fatigue window (3.7x risk at 04:00) | Fleet harsh-event cluster (228 events, 2.9x expected) | Busy multi-arm junction",MDR
+82.51535,25.50523,64.3,72.98285,147,1,20,harsh_brake,3,320,600,HS-004,4,"Night / fatigue window (3.7x risk at 03:00) | Fleet harsh-event cluster (231 events, 1.9x expected) | Busy multi-arm junction",MDR
+82.43347,25.51831,54.5,54.55675,100,3,19,harsh_brake,0,269,400,HS-005,5,"Night / fatigue window (3.0x risk at 00:00) | Fleet harsh-event cluster (176 events, 2.3x expected) | Busy multi-arm junction",MDR
+82.00894,25.30528,51.0,868.17765,1916,38,223,harsh_brake,23,59,600,HS-006,6,"Fleet harsh-event cluster (2774 events, 4.7x expected) | Night / fatigue window (3.0x risk at 23:00) | Busy multi-arm junction",SH
+81.95902,25.46084,48.6,50.36192,118,2,18,harsh_brake,2,50,600,HS-007,7,"Fleet harsh-event cluster (201 events, 4.1x expected) | Night / fatigue window (3.7x risk at 02:00) | Narrow district road",MDR
+82.41453,25.54157,47.9,363.5557,729,16,79,harsh_brake,3,270,1000,HS-008,8,"Night / fatigue window (3.7x risk at 03:00) | Fleet harsh-event cluster (1058 events, 3.3x expected) | Busy multi-arm junction",MDR
+82.16533,25.38202,46.1,41.1509,100,3,7,harsh_brake,2,145,800,HS-009,9,"Night / fatigue window (3.7x risk at 02:00) | Fleet harsh-event cluster (144 events, 2.0x expected) | Busy multi-arm junction",MDR
+82.52227,25.24591,45.9,88.33147,181,2,21,harsh_brake,2,306,600,HS-010,10,"Night / fatigue window (3.7x risk at 02:00) | Fleet harsh-event cluster (276 events, 3.1x expected) | Sharp curves (56°/km)",MDR
+82.07166,25.42978,44.1,7240.4555,15229,287,1793,harsh_brake,22,95,600,HS-011,11,"Night / fatigue window (3.0x risk at 22:00) | Fleet harsh-event cluster (22176 events, 3.0x expected) | High-speed national highway",NH
+82.60127,25.54325,41.5,273.96151,626,11,71,harsh_brake,2,349,800,HS-012,12,"Fleet harsh-event cluster (924 events, 4.6x expected) | Night / fatigue window (3.7x risk at 02:00) | Narrow district road",MDR
+82.62774,25.27778,41.1,37.70823,93,0,8,harsh_brake,0,350,200,HS-013,13,Night / fatigue window (2.9x risk at 00:00) | Busy multi-arm junction | Narrow district road,MDR
+81.97129,25.34317,36.9,155.56978,327,5,34,harsh_brake,23,47,600,HS-014,14,"Fleet harsh-event cluster (441 events, 4.0x expected) | Night / fatigue window (3.0x risk at 23:00) | Narrow district road",MDR
+82.30494,25.5245,33.0,78.7832,148,3,13,harsh_brake,22,222,800,HS-015,15,"Night / fatigue window (3.0x risk at 22:00) | Fleet harsh-event cluster (208 events, 2.6x expected) | Narrow district road",MDR
+82.0571,25.49529,32.3,437.99675,863,18,101,harsh_brake,2,84,800,HS-016,16,"Night / fatigue window (3.7x risk at 02:00) | Fleet harsh-event cluster (1295 events, 3.2x expected) | Busy multi-arm junction",SH
+82.55645,25.37204,31.6,846.96495,1787,36,199,harsh_brake,22,329,600,HS-017,17,"Night / fatigue window (3.0x risk at 22:00) | Fleet harsh-event cluster (2538 events, 1.9x expected) | High-speed national highway",NH
+82.14219,25.45915,31.6,107.96336,239,1,27,harsh_brake,2,131,800,HS-018,18,Night / fatigue window (3.6x risk at 02:00) | Busy multi-arm junction | Sharp curves (52°/km),MDR
+82.86203,25.39229,29.9,581.05923,1176,22,145,harsh_brake,2,461,4400,HS-019,19,"Fleet harsh-event cluster (1510 events, 4.3x expected) | Night / fatigue window (3.7x risk at 02:00) | Busy multi-arm junction",MDR
+82.68961,25.31566,29.5,1079.03812,2319,47,274,harsh_brake,23,381,800,HS-020,20,"Fleet harsh-event cluster (3493 events, 3.6x expected) | Night / fatigue window (2.9x risk at 23:00) | Busy multi-arm junction",SH
+82.87103,25.46287,28.7,105.97556,234,4,33,harsh_brake,1,466,1000,HS-021,21,"Fleet harsh-event cluster (361 events, 3.4x expected) | Night / fatigue window (3.0x risk at 01:00) | Sharp curves (64°/km)",MDR
+81.94515,25.46029,28.1,59.97719,145,3,9,harsh_brake,4,40,600,HS-022,22,"Night / fatigue window (3.6x risk at 04:00) | Fleet harsh-event cluster (186 events, 2.7x expected) | Narrow district road",MDR
+82.40018,25.37847,27.8,3331.75432,6872,127,781,harsh_brake,23,246,1200,HS-023,23,"Fleet harsh-event cluster (9902 events, 3.0x expected) | Night / fatigue window (2.8x risk at 23:00) | High-speed national highway",NH
+82.31715,25.54991,26.9,44.95132,81,3,9,harsh_brake,0,223,400,HS-024,24,"Night / fatigue window (3.0x risk at 00:00) | Fleet harsh-event cluster (127 events, 2.1x expected) | Narrow district road",MDR
+82.17148,25.42213,25.5,2526.41037,5419,75,659,harsh_brake,2,146,600,HS-025,25,"Night / fatigue window (3.7x risk at 02:00) | High-speed national highway | Fleet harsh-event cluster (8109 events, 1.4x expected)",NH
+82.79093,25.46214,25.4,105.98815,222,3,35,harsh_brake,3,433,800,HS-026,26,"Night / fatigue window (3.7x risk at 03:00) | Fleet harsh-event cluster (302 events, 1.5x expected) | Busy multi-arm junction",MDR
+82.21114,25.48816,24.2,982.29211,2152,37,237,harsh_brake,23,167,800,HS-027,27,"Night / fatigue window (3.0x risk at 23:00) | Fleet harsh-event cluster (3215 events, 2.1x expected) | Busy multi-arm junction",SH
+82.34061,25.50398,23.2,18.40612,47,0,6,harsh_brake,22,235,400,HS-028,28,Night / fatigue window (3.0x risk at 22:00) | Narrow district road,MDR
+82.05552,25.43327,19.8,84.25546,166,5,17,harsh_brake,2,96,200,HS-029,29,"Night / fatigue window (3.7x risk at 02:00) | Fleet harsh-event cluster (239 events, 2.4x expected) | Busy multi-arm junction",SH
+82.90517,25.4286,19.6,1130.88249,2355,39,276,harsh_brake,22,478,800,HS-030,30,"Night / fatigue window (3.0x risk at 22:00) | Fleet harsh-event cluster (3523 events, 1.7x expected) | High-speed national highway",NH
+82.48036,25.50667,18.1,253.36163,479,16,50,harsh_brake,5,302,800,HS-031,31,"Fleet harsh-event cluster (541 events, 4.1x expected) | Night / fatigue window (3.7x risk at 05:00) | Busy multi-arm junction",SH
+82.94112,25.31077,18.0,381.39807,850,11,99,harsh_brake,3,484,600,HS-032,32,"Night / fatigue window (3.4x risk at 03:00) | Fleet harsh-event cluster (1292 events, 1.7x expected) | Busy multi-arm junction",SH
+82.98524,25.31594,16.9,660.36157,1296,34,153,harsh_brake,23,499,600,HS-033,33,"Night / fatigue window (2.6x risk at 23:00) | Fleet harsh-event cluster (2018 events, 2.0x expected) | Busy multi-arm junction",SH
+82.47446,25.37556,13.1,21569.20215,44113,772,5300,harsh_brake,22,278,47400,HS-034,34,Night / fatigue window (2.9x risk at 22:00) | Sharp curves (173°/km) | High-speed national highway,NH
+82.86104,25.42338,9.5,79.51923,150,4,21,harsh_brake,2,462,800,HS-035,35,Night / fatigue window (3.7x risk at 02:00) | High-speed national highway | Busy multi-arm junction,NH
+82.8717,25.42598,7.9,194.87148,372,11,40,harsh_brake,3,462,1200,HS-036,36,Night / fatigue window (3.7x risk at 03:00) | High-speed national highway | Busy multi-arm junction,NH
+82.42468,25.37526,7.8,553.20395,1049,18,127,harsh_brake,22,263,1200,HS-037,37,Night / fatigue window (2.8x risk at 22:00) | Sharp curves (112°/km) | High-speed national highway,NH
+82.42068,25.42793,7.7,45.44865,91,1,16,harsh_brake,1,265,1800,HS-038,38,Night / fatigue window (2.8x risk at 01:00) | Sharp curves (139°/km) | Busy multi-arm junction,MDR
+82.51262,25.47629,7.6,143.2298,291,4,38,harsh_brake,2,318,3200,HS-039,39,Night / fatigue window (3.7x risk at 02:00) | Sharp curves (134°/km) | Busy multi-arm junction,MDR
+82.12307,25.45914,7.5,43.25187,109,0,9,harsh_brake,4,117,600,HS-040,40,Night / fatigue window (3.7x risk at 04:00) | Sharp curves (91°/km) | Busy multi-arm junction,MDR
+82.48066,25.28025,7.4,24.11168,48,1,8,harsh_brake,22,286,200,HS-041,41,Night / fatigue window (3.0x risk at 22:00) | Busy multi-arm junction,SH
+82.58158,25.42421,7.3,46.52627,69,4,12,harsh_brake,3,342,600,HS-042,42,Night / fatigue window (3.7x risk at 03:00) | Busy multi-arm junction | Sharp curves (75°/km),MDR
+82.27871,25.5497,7.1,50.47032,84,2,18,harsh_brake,1,206,1200,HS-043,43,Night / fatigue window (3.0x risk at 01:00) | Sharp curves (140°/km) | Narrow district road,MDR
+82.30296,25.48941,7.1,42.17978,90,1,13,harsh_brake,0,219,1400,HS-044,44,Night / fatigue window (3.0x risk at 00:00) | Sharp curves (162°/km) | Narrow district road,MDR
+82.10313,25.45973,7.0,165.00369,276,7,35,harsh_brake,0,117,2000,HS-045,45,Night / fatigue window (2.9x risk at 00:00) | Sharp curves (91°/km) | Busy multi-arm junction,MDR
+82.95682,25.4297,6.9,42.16584,60,2,8,harsh_brake,22,487,200,HS-046,46,Night / fatigue window (3.0x risk at 22:00) | High-speed national highway,NH
+82.09118,25.42942,6.9,242.15101,547,9,70,harsh_brake,1,95,800,HS-047,47,"Night / fatigue window (3.0x risk at 01:00) | Fleet harsh-event cluster (22176 events, 3.0x expected) | High-speed national highway",NH
+82.58208,25.37427,6.9,47.8998,89,3,9,harsh_brake,23,341,200,HS-048,48,Night / fatigue window (3.0x risk at 23:00) | High-speed national highway | Busy multi-arm junction,NH
+82.30718,25.46769,6.8,54.76067,108,4,14,harsh_brake,5,200,1200,HS-049,49,Night / fatigue window (3.7x risk at 05:00) | Sharp curves (121°/km) | Narrow district road,MDR
+82.40861,25.37781,6.7,181.01482,333,6,43,harsh_brake,3,263,1000,HS-050,50,Night / fatigue window (3.5x risk at 03:00) | Sharp curves (112°/km) | High-speed national highway,NH
+82.06547,25.26947,6.4,23.22226,41,1,3,harsh_brake,23,89,400,HS-051,51,Night / fatigue window (3.0x risk at 23:00) | Busy multi-arm junction | Narrow district road,MDR
+82.5184,25.33287,6.1,56.58656,101,4,11,harsh_brake,3,311,1400,HS-052,52,Night / fatigue window (3.7x risk at 03:00) | Sharp curves (93°/km) | Busy multi-arm junction,MDR
+82.09078,25.30027,5.7,18.84128,41,1,7,harsh_brake,4,106,600,HS-053,53,Night / fatigue window (3.7x risk at 04:00) | Sharp curves (119°/km) | Busy multi-arm junction,MDR
+81.9955,25.30403,5.6,31.80811,45,3,10,harsh_brake,0,59,200,HS-054,54,"Fleet harsh-event cluster (2774 events, 4.7x expected) | Night / fatigue window (3.0x risk at 00:00) | Busy multi-arm junction",SH
+82.5123,25.26437,5.5,58.66155,112,2,15,harsh_brake,2,307,1600,HS-055,55,Night / fatigue window (3.7x risk at 02:00) | Sharp curves (92°/km) | Busy multi-arm junction,MDR
+82.89621,25.43099,5.5,23.95866,55,2,7,harsh_brake,5,464,600,HS-056,56,Night / fatigue window (3.7x risk at 05:00) | Sharp curves (97°/km) | Busy multi-arm junction,MDR
+82.69116,25.42451,5.4,27.41429,73,0,6,harsh_brake,23,389,200,HS-057,57,Night / fatigue window (3.0x risk at 23:00) | Sharp curves (84°/km) | Busy multi-arm junction,SH
+82.95079,25.49264,5.1,31.912,46,2,3,harsh_brake,0,493,200,HS-058,58,Night / fatigue window (3.0x risk at 00:00) | Busy multi-arm junction,SH
+82.05938,25.42988,5.0,102.4644,226,3,28,harsh_brake,23,95,200,HS-059,59,"Night / fatigue window (3.0x risk at 23:00) | Fleet harsh-event cluster (22176 events, 3.0x expected) | High-speed national highway",NH
+82.19882,25.41778,4.8,22.68717,54,1,5,harsh_brake,22,164,200,HS-060,60,Night / fatigue window (3.0x risk at 22:00) | High-speed national highway,NH
+82.5816,25.41302,4.8,21.46011,41,1,5,harsh_brake,3,342,400,HS-061,61,Night / fatigue window (3.7x risk at 03:00) | Busy multi-arm junction | Sharp curves (75°/km),MDR
+82.05452,25.29636,4.8,31.55103,41,2,5,harsh_brake,4,90,200,HS-062,62,Night / fatigue window (3.7x risk at 04:00) | Busy multi-arm junction,SH
+82.69751,25.30366,4.7,27.65596,41,3,4,harsh_turn,3,379,200,HS-063,63,Night / fatigue window (3.6x risk at 03:00) | Busy multi-arm junction,SH
+82.4664,25.32146,4.6,88.35286,139,5,18,harsh_brake,2,290,400,HS-064,64,Night / fatigue window (3.7x risk at 02:00) | Sharp curves (101°/km) | Busy multi-arm junction,SH
+82.82502,25.41951,4.6,66.83948,153,2,16,harsh_brake,22,429,200,HS-065,65,Night / fatigue window (3.0x risk at 22:00) | High-speed national highway,NH
+82.58168,25.40314,4.6,30.92885,65,1,11,harsh_brake,0,342,600,HS-066,66,Night / fatigue window (3.0x risk at 00:00) | Busy multi-arm junction | Sharp curves (75°/km),MDR
+82.68771,25.4333,4.6,41.75455,78,1,12,harsh_brake,4,389,200,HS-067,67,Night / fatigue window (3.7x risk at 04:00) | Sharp curves (84°/km) | Busy multi-arm junction,SH
+82.26506,25.36954,4.5,42.50723,76,4,7,harsh_brake,0,197,400,HS-068,68,Night / fatigue window (3.0x risk at 00:00) | Busy multi-arm junction | Sharp curves (51°/km),SH
+82.09916,25.42922,4.4,30.81799,63,1,8,harsh_brake,2,113,200,HS-069,69,Night / fatigue window (3.7x risk at 02:00) | High-speed national highway | Busy multi-arm junction,NH
+82.46691,25.31448,4.3,41.12491,71,2,10,harsh_brake,2,290,200,HS-070,70,Night / fatigue window (3.7x risk at 02:00) | Sharp curves (101°/km) | Busy multi-arm junction,SH
+82.05789,25.27146,4.2,28.08474,58,0,4,harsh_brake,4,90,200,HS-071,71,Night / fatigue window (3.7x risk at 04:00) | Busy multi-arm junction,SH

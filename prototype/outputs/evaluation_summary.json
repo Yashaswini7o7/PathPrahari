@@ -1,0 +1,7 @@
+{
+  "ci90_coverage": 0.9709864603481625,
+  "route_spearman": 0.9949843535740654,
+  "n_routes": 239,
+  "n_sparse": 258,
+  "dispatch_log_spearman_risk_vs_harsh_events": 0.9114083024821418
+}

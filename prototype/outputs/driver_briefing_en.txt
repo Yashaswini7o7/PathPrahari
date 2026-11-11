@@ -1,0 +1,7 @@
+PathPrahari pre-trip briefing - Depot A -> Hub B
+Departure 01:00 | Route: Safest (bypass) | 122 min | risk 4.2/10k trips (-32% vs fastest)
+Watch out:
+ 1. km 110-113 (~02:00): Night / fatigue window (3.7x risk at 02:00); Fleet harsh-event cluster (22176 events, 3.0x expected); High-speed national highway
+ 2. km 99-102 (~02:00): Night / fatigue window (3.7x risk at 02:00); High-speed national highway; Fleet harsh-event cluster (8109 events, 1.4x expected)
+ 3. km 7-11 (~01:00): Night / fatigue window (3.0x risk at 01:00); Fleet harsh-event cluster (3523 events, 1.7x expected); High-speed national highway
+Tip: this trip crosses unlit roads between 01:00-05:00. Leaving at 06:00 instead cuts risk by 70%.

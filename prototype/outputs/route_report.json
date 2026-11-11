@@ -1,0 +1,511 @@
+{
+  "afternoon_clear": {
+    "departure": "14:00",
+    "weather": "clear",
+    "options": {
+      "Fastest": {
+        "travel_min": 105.6,
+        "length_km": 119.6,
+        "risk_per_10k_trips": 1.963,
+        "risk_90pct_interval": [
+          1.91,
+          2.018
+        ],
+        "confidence": "High",
+        "risk_change_vs_fastest_pct": 0.0,
+        "extra_minutes_vs_fastest": 0.0,
+        "top_risk_segments": [
+          {
+            "seg_id": 246,
+            "km": [
+              61.5,
+              65.1
+            ],
+            "clock_time": "14:00",
+            "reasons": [
+              "Fleet harsh-event cluster (9902 events, 3.0x expected)",
+              "High-speed national highway",
+              "Busy multi-arm junction"
+            ]
+          },
+          {
+            "seg_id": 295,
+            "km": [
+              50.7,
+              54.3
+            ],
+            "clock_time": "14:00",
+            "reasons": [
+              "Sharp curves (154°/km)",
+              "High-speed national highway",
+              "Busy multi-arm junction"
+            ]
+          },
+          {
+            "seg_id": 278,
+            "km": [
+              54.3,
+              57.9
+            ],
+            "clock_time": "14:00",
+            "reasons": [
+              "Sharp curves (173°/km)",
+              "High-speed national highway",
+              "Busy multi-arm junction"
+            ]
+          }
+        ]
+      },
+      "Balanced": {
+        "travel_min": 122.4,
+        "length_km": 134.8,
+        "risk_per_10k_trips": 1.271,
+        "risk_90pct_interval": [
+          1.205,
+          1.336
+        ],
+        "confidence": "High",
+        "risk_change_vs_fastest_pct": -35.2,
+        "extra_minutes_vs_fastest": 16.8,
+        "top_risk_segments": [
+          {
+            "seg_id": 95,
+            "km": [
+              109.5,
+              113.1
+            ],
+            "clock_time": "15:00",
+            "reasons": [
+              "Fleet harsh-event cluster (22176 events, 3.0x expected)",
+              "High-speed national highway",
+              "Busy multi-arm junction"
+            ]
+          },
+          {
+            "seg_id": 478,
+            "km": [
+              7.2,
+              10.7
+            ],
+            "clock_time": "14:00",
+            "reasons": [
+              "Fleet harsh-event cluster (3523 events, 1.7x expected)",
+              "High-speed national highway",
+              "Busy multi-arm junction"
+            ]
+          },
+          {
+            "seg_id": 146,
+            "km": [
+              98.7,
+              102.3
+            ],
+            "clock_time": "15:00",
+            "reasons": [
+              "High-speed national highway",
+              "Fleet harsh-event cluster (8109 events, 1.4x expected)",
+              "Busy multi-arm junction"
+            ]
+          }
+        ]
+      },
+      "Safest": {
+        "travel_min": 122.4,
+        "length_km": 134.8,
+        "risk_per_10k_trips": 1.271,
+        "risk_90pct_interval": [
+          1.205,
+          1.336
+        ],
+        "confidence": "High",
+        "risk_change_vs_fastest_pct": -35.2,
+        "extra_minutes_vs_fastest": 16.8,
+        "top_risk_segments": [
+          {
+            "seg_id": 95,
+            "km": [
+              109.5,
+              113.1
+            ],
+            "clock_time": "15:00",
+            "reasons": [
+              "Fleet harsh-event cluster (22176 events, 3.0x expected)",
+              "High-speed national highway",
+              "Busy multi-arm junction"
+            ]
+          },
+          {
+            "seg_id": 478,
+            "km": [
+              7.2,
+              10.7
+            ],
+            "clock_time": "14:00",
+            "reasons": [
+              "Fleet harsh-event cluster (3523 events, 1.7x expected)",
+              "High-speed national highway",
+              "Busy multi-arm junction"
+            ]
+          },
+          {
+            "seg_id": 146,
+            "km": [
+              98.7,
+              102.3
+            ],
+            "clock_time": "15:00",
+            "reasons": [
+              "High-speed national highway",
+              "Fleet harsh-event cluster (8109 events, 1.4x expected)",
+              "Busy multi-arm junction"
+            ]
+          }
+        ]
+      }
+    },
+    "candidates_evaluated": 4,
+    "halt_suggestion": null
+  },
+  "night_clear": {
+    "departure": "01:00",
+    "weather": "clear",
+    "options": {
+      "Fastest": {
+        "travel_min": 105.6,
+        "length_km": 119.6,
+        "risk_per_10k_trips": 6.232,
+        "risk_90pct_interval": [
+          6.056,
+          6.413
+        ],
+        "confidence": "High",
+        "risk_change_vs_fastest_pct": 0.0,
+        "extra_minutes_vs_fastest": 0.0,
+        "top_risk_segments": [
+          {
+            "seg_id": 95,
+            "km": [
+              94.2,
+              97.8
+            ],
+            "clock_time": "02:00",
+            "reasons": [
+              "Night / fatigue window (3.7x risk at 02:00)",
+              "Fleet harsh-event cluster (22176 events, 3.0x expected)",
+              "High-speed national highway"
+            ]
+          },
+          {
+            "seg_id": 246,
+            "km": [
+              61.5,
+              65.1
+            ],
+            "clock_time": "01:00",
+            "reasons": [
+              "Fleet harsh-event cluster (9902 events, 3.0x expected)",
+              "Night / fatigue window (2.8x risk at 01:00)",
+              "High-speed national highway"
+            ]
+          },
+          {
+            "seg_id": 295,
+            "km": [
+              50.7,
+              54.3
+            ],
+            "clock_time": "01:00",
+            "reasons": [
+              "Night / fatigue window (3.0x risk at 01:00)",
+              "Sharp curves (154°/km)",
+              "High-speed national highway"
+            ]
+          }
+        ]
+      },
+      "Balanced": {
+        "travel_min": 122.4,
+        "length_km": 134.8,
+        "risk_per_10k_trips": 4.25,
+        "risk_90pct_interval": [
+          4.028,
+          4.467
+        ],
+        "confidence": "High",
+        "risk_change_vs_fastest_pct": -31.8,
+        "extra_minutes_vs_fastest": 16.8,
+        "top_risk_segments": [
+          {
+            "seg_id": 95,
+            "km": [
+              109.5,
+              113.1
+            ],
+            "clock_time": "02:00",
+            "reasons": [
+              "Night / fatigue window (3.7x risk at 02:00)",
+              "Fleet harsh-event cluster (22176 events, 3.0x expected)",
+              "High-speed national highway"
+            ]
+          },
+          {
+            "seg_id": 146,
+            "km": [
+              98.7,
+              102.3
+            ],
+            "clock_time": "02:00",
+            "reasons": [
+              "Night / fatigue window (3.7x risk at 02:00)",
+              "High-speed national highway",
+              "Fleet harsh-event cluster (8109 events, 1.4x expected)"
+            ]
+          },
+          {
+            "seg_id": 478,
+            "km": [
+              7.2,
+              10.7
+            ],
+            "clock_time": "01:00",
+            "reasons": [
+              "Night / fatigue window (3.0x risk at 01:00)",
+              "Fleet harsh-event cluster (3523 events, 1.7x expected)",
+              "High-speed national highway"
+            ]
+          }
+        ]
+      },
+      "Safest": {
+        "travel_min": 122.4,
+        "length_km": 134.8,
+        "risk_per_10k_trips": 4.25,
+        "risk_90pct_interval": [
+          4.028,
+          4.467
+        ],
+        "confidence": "High",
+        "risk_change_vs_fastest_pct": -31.8,
+        "extra_minutes_vs_fastest": 16.8,
+        "top_risk_segments": [
+          {
+            "seg_id": 95,
+            "km": [
+              109.5,
+              113.1
+            ],
+            "clock_time": "02:00",
+            "reasons": [
+              "Night / fatigue window (3.7x risk at 02:00)",
+              "Fleet harsh-event cluster (22176 events, 3.0x expected)",
+              "High-speed national highway"
+            ]
+          },
+          {
+            "seg_id": 146,
+            "km": [
+              98.7,
+              102.3
+            ],
+            "clock_time": "02:00",
+            "reasons": [
+              "Night / fatigue window (3.7x risk at 02:00)",
+              "High-speed national highway",
+              "Fleet harsh-event cluster (8109 events, 1.4x expected)"
+            ]
+          },
+          {
+            "seg_id": 478,
+            "km": [
+              7.2,
+              10.7
+            ],
+            "clock_time": "01:00",
+            "reasons": [
+              "Night / fatigue window (3.0x risk at 01:00)",
+              "Fleet harsh-event cluster (3523 events, 1.7x expected)",
+              "High-speed national highway"
+            ]
+          }
+        ]
+      }
+    },
+    "candidates_evaluated": 4,
+    "halt_suggestion": {
+      "type": "delay_departure",
+      "depart_after": "04:00",
+      "dark_segments_avoided": 21
+    }
+  },
+  "night_fog": {
+    "departure": "01:00",
+    "weather": "fog",
+    "options": {
+      "Fastest": {
+        "travel_min": 105.6,
+        "length_km": 119.6,
+        "risk_per_10k_trips": 21.357,
+        "risk_90pct_interval": [
+          20.715,
+          21.995
+        ],
+        "confidence": "High",
+        "risk_change_vs_fastest_pct": 0.0,
+        "extra_minutes_vs_fastest": 0.0,
+        "top_risk_segments": [
+          {
+            "seg_id": 95,
+            "km": [
+              94.2,
+              97.8
+            ],
+            "clock_time": "02:00",
+            "reasons": [
+              "Fog + night + darkness (13.8x risk at 02:00)",
+              "Fleet harsh-event cluster (22176 events, 3.0x expected)",
+              "High-speed national highway"
+            ]
+          },
+          {
+            "seg_id": 295,
+            "km": [
+              50.7,
+              54.3
+            ],
+            "clock_time": "01:00",
+            "reasons": [
+              "Fog + night + darkness (10.8x risk at 01:00)",
+              "Sharp curves (154°/km)",
+              "High-speed national highway"
+            ]
+          },
+          {
+            "seg_id": 278,
+            "km": [
+              54.3,
+              57.9
+            ],
+            "clock_time": "01:00",
+            "reasons": [
+              "Fog + night + darkness (9.5x risk at 01:00)",
+              "Sharp curves (173°/km)",
+              "High-speed national highway"
+            ]
+          }
+        ]
+      },
+      "Balanced": {
+        "travel_min": 122.4,
+        "length_km": 134.8,
+        "risk_per_10k_trips": 14.673,
+        "risk_90pct_interval": [
+          13.968,
+          15.377
+        ],
+        "confidence": "High",
+        "risk_change_vs_fastest_pct": -31.3,
+        "extra_minutes_vs_fastest": 16.8,
+        "top_risk_segments": [
+          {
+            "seg_id": 95,
+            "km": [
+              109.5,
+              113.1
+            ],
+            "clock_time": "02:00",
+            "reasons": [
+              "Fog + night + darkness (13.8x risk at 02:00)",
+              "Fleet harsh-event cluster (22176 events, 3.0x expected)",
+              "High-speed national highway"
+            ]
+          },
+          {
+            "seg_id": 146,
+            "km": [
+              98.7,
+              102.3
+            ],
+            "clock_time": "02:00",
+            "reasons": [
+              "Fog + night + darkness (13.5x risk at 02:00)",
+              "High-speed national highway",
+              "Fleet harsh-event cluster (8109 events, 1.4x expected)"
+            ]
+          },
+          {
+            "seg_id": 478,
+            "km": [
+              7.2,
+              10.7
+            ],
+            "clock_time": "01:00",
+            "reasons": [
+              "Fog + night + darkness (11.2x risk at 01:00)",
+              "Fleet harsh-event cluster (3523 events, 1.7x expected)",
+              "High-speed national highway"
+            ]
+          }
+        ]
+      },
+      "Safest": {
+        "travel_min": 122.4,
+        "length_km": 134.8,
+        "risk_per_10k_trips": 14.673,
+        "risk_90pct_interval": [
+          13.968,
+          15.377
+        ],
+        "confidence": "High",
+        "risk_change_vs_fastest_pct": -31.3,
+        "extra_minutes_vs_fastest": 16.8,
+        "top_risk_segments": [
+          {
+            "seg_id": 95,
+            "km": [
+              109.5,
+              113.1
+            ],
+            "clock_time": "02:00",
+            "reasons": [
+              "Fog + night + darkness (13.8x risk at 02:00)",
+              "Fleet harsh-event cluster (22176 events, 3.0x expected)",
+              "High-speed national highway"
+            ]
+          },
+          {
+            "seg_id": 146,
+            "km": [
+              98.7,
+              102.3
+            ],
+            "clock_time": "02:00",
+            "reasons": [
+              "Fog + night + darkness (13.5x risk at 02:00)",
+              "High-speed national highway",
+              "Fleet harsh-event cluster (8109 events, 1.4x expected)"
+            ]
+          },
+          {
+            "seg_id": 478,
+            "km": [
+              7.2,
+              10.7
+            ],
+            "clock_time": "01:00",
+            "reasons": [
+              "Fog + night + darkness (11.2x risk at 01:00)",
+              "Fleet harsh-event cluster (3523 events, 1.7x expected)",
+              "High-speed national highway"
+            ]
+          }
+        ]
+      }
+    },
+    "candidates_evaluated": 4,
+    "halt_suggestion": {
+      "type": "delay_departure",
+      "depart_after": "04:00",
+      "dark_segments_avoided": 21
+    }
+  }
+}

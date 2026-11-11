@@ -1,0 +1,8 @@
+kind,n,hotspot_s,fit_s,route_query_s
+events,203661,0.2431,0.9113,
+events,814644,0.6528,1.2112,
+events,2036610,1.3979,1.4641,
+events,5091525,3.3135,2.656,
+network,517,,,0.0357
+network,1979,,,0.1065
+network,7849,,,0.4109
